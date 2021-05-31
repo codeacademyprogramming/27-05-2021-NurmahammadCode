@@ -34,25 +34,3 @@ export function updateOrder(payload) {
 export function sortStatus(payload) {
   return { type: SORT_STATUS, payload };
 }
-
-// export function getStudents() {
-//   return function (dispatch) {
-//     axios
-//       .get("https://607ebb8202a23c0017e8bf04.mockapi.io/a/1/students")
-//       .then((response) => {
-//         dispatch({ type: SET_STUDENTS, payload: response.data });
-//       })
-//       .catch((error) => console.error(error));
-//   };
-// }
-
-// export function setAttendance() {
-//   return function (dispatch) {
-//     axios
-//       .get("https://607ebb8202a23c0017e8bf04.mockapi.io/a/1/attendence")
-//       .then((response) => {
-//         dispatch({ type: SET_ATTENDANCE, payload: response.data });
-//       })
-//       .catch((error) => console.error(error));
-//   };
-// }
