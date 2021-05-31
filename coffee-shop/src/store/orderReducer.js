@@ -1,6 +1,5 @@
 import {
   SET_ORDERS,
-  GET_ORDERS,
   DELETE_ORDER,
   CONFIRM_ORDER,
   SET_IN_PROGRESS,
@@ -55,7 +54,7 @@ function orderReducer(state = initialState, { type, payload }) {
   } else if (type === SET_IN_PROGRESS) {
     let copyOrders = [...state.orders];
     copyOrders = copyOrders.map((order) => {
-      if (order.id === payload.id && order.status != "Done") {
+      if (order.id === payload.id && order.status !== "Done") {
         return { ...order, status: "In Progress" };
       } else return order;
     });

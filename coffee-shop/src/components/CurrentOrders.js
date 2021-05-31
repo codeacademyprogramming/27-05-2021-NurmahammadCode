@@ -22,6 +22,7 @@ function CurrentOrders({ data, deleteOrder, confirmOrder, updateOrder }) {
         {isEditMode && activeId === order.id ? (
           <input
             className="form-control"
+            style={{ width: 45, marginTop: "18%" }}
             value={sugar}
             onChange={(e) => setSugar(e.target.value)}
           />
@@ -57,7 +58,7 @@ function CurrentOrders({ data, deleteOrder, confirmOrder, updateOrder }) {
           <button
             type="button"
             className="btn btn-primary btn-xs"
-            disabled={order.status == "Done"}
+            disabled={order.status === "Done"}
             onClick={() => {
               if (!isEditMode) {
                 setStatus(order.status);
