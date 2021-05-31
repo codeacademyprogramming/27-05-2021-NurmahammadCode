@@ -4,6 +4,7 @@ import {
   CONFIRM_ORDER,
   SET_IN_PROGRESS,
   UPDATE_ORDER,
+  SORT_STATUS,
 } from "./constants";
 
 const initialState = {
@@ -58,6 +59,31 @@ function orderReducer(state = initialState, { type, payload }) {
         return { ...order, status: "In Progress" };
       } else return order;
     });
+    return { ...state, orders: copyOrders };
+  } else if (type === SORT_STATUS) {
+    let copyOrders = [...state.orders];
+    copyOrders = copyOrders.sort((a, b) => {
+      if (a.status === "Created" && b.status === "In Progress") {
+        return 1;
+      }
+      if (a.status === "Created" && b.status === "Done") {
+        return 1;
+      }
+      if (a.status === "In Progress" && b.status === "Created") {
+        return -1;
+      }
+      if (a.status === "In Progress" && b.status === "Done") {
+        return 1;
+      }
+      if (a.status === "Done" && b.status === "In Progress") {
+        return -1;
+      }
+      if (a.status === "Done" && b.status === "Created") {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(copyOrders);
     return { ...state, orders: copyOrders };
   }
   return state;

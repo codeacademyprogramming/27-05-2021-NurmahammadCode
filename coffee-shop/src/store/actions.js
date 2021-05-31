@@ -5,6 +5,7 @@ import {
   CONFIRM_ORDER,
   SET_IN_PROGRESS,
   UPDATE_ORDER,
+  SORT_STATUS,
 } from "./constants";
 
 export const setOrder = (payload) => (dispatch) => {
@@ -28,6 +29,10 @@ export function confirmOrder(payload) {
 
 export function updateOrder(payload) {
   return { type: UPDATE_ORDER, payload };
+}
+
+export function sortStatus(payload) {
+  return { type: SORT_STATUS, payload };
 }
 
 // export function getStudents() {

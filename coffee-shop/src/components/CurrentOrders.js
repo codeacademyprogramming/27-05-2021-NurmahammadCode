@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { confirmOrder, deleteOrder, updateOrder } from "../store/actions";
+import {
+  confirmOrder,
+  deleteOrder,
+  sortStatus,
+  updateOrder,
+} from "../store/actions";
 
 const mapStateToProps = (state) => ({
   data: state.orderReducer.orders,
 });
 
-function CurrentOrders({ data, deleteOrder, confirmOrder, updateOrder }) {
+function CurrentOrders({
+  data,
+  deleteOrder,
+  confirmOrder,
+  updateOrder,
+  sortStatus,
+}) {
   const [status, setStatus] = useState("");
   const [note, setNote] = useState("");
   const [sugar, setSugar] = useState("");
@@ -72,7 +83,7 @@ function CurrentOrders({ data, deleteOrder, confirmOrder, updateOrder }) {
               }
             }}
           >
-            {isEditMode ? "Done" : "Edit"}
+            {isEditMode && activeId === order.id ? "Done" : "Edit"}
           </button>
         </td>
         <td>
@@ -116,7 +127,22 @@ function CurrentOrders({ data, deleteOrder, confirmOrder, updateOrder }) {
               <th>Sugar</th>
               <th>Table number</th>
               <th>Note</th>
-              <th>Status</th>
+              <th
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "#4cb565",
+                  borderRadius: 20,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "2px 3px #888888",
+                }}
+                onClick={() => {
+                  sortStatus();
+                }}
+              >
+                Status
+              </th>
             </tr>
           </thead>
           <tbody>{orders}</tbody>
@@ -135,4 +161,5 @@ export default connect(mapStateToProps, {
   deleteOrder,
   confirmOrder,
   updateOrder,
+  sortStatus,
 })(CurrentOrders);
